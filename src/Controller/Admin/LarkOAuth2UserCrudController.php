@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -283,23 +284,13 @@ final class LarkOAuth2UserCrudController extends AbstractCrudController
             ->setHelp('令牌是否有效');
     }
 
-    private function buildRawDataField(): TextareaField
+    private function buildRawDataField(): ArrayField
     {
-        return TextareaField::new('rawData', '原始数据')
+        return ArrayField::new('rawData', '原始数据')
             ->setHelp('从飞书API获取的原始用户数据')
             ->onlyOnDetail()
-            ->setFormTypeOption('attr', [
-                'readonly' => true,
-                'rows' => 10,
-                'style' => 'font-family: monospace; font-size: 12px;',
-            ])
-            ->formatValue(function ($value) {
-                if (null === $value || [] === $value) {
-                    return '{}';
-                }
-
-                return json_encode($value, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-            });
+            ->hideOnIndex()
+            ->hideOnForm();
     }
 
     /**
