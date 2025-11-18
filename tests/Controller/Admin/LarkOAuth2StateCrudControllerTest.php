@@ -28,11 +28,6 @@ final class LarkOAuth2StateCrudControllerTest extends AbstractEasyAdminControlle
         return LarkOAuth2State::class;
     }
 
-    public function testGetEntityFqcn(): void
-    {
-        $this->assertSame(LarkOAuth2State::class, LarkOAuth2StateCrudController::getEntityFqcn());
-    }
-
     public function testControllerInstantiation(): void
     {
         $controller = new LarkOAuth2StateCrudController();
@@ -135,7 +130,6 @@ final class LarkOAuth2StateCrudControllerTest extends AbstractEasyAdminControlle
     {
         return self::getService(LarkOAuth2StateCrudController::class);
     }
-
 
     /**
      * @return iterable<string, array{string}>

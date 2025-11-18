@@ -23,11 +23,6 @@ use Tourze\PHPUnitSymfonyWebTest\AbstractEasyAdminControllerTestCase;
 #[RunTestsInSeparateProcesses]
 class LarkOAuth2UserCrudControllerTest extends AbstractEasyAdminControllerTestCase
 {
-    public function testGetEntityFqcn(): void
-    {
-        $this->assertSame(LarkOAuth2User::class, LarkOAuth2UserCrudController::getEntityFqcn());
-    }
-
     public function testControllerInstantiation(): void
     {
         $controller = new LarkOAuth2UserCrudController();
